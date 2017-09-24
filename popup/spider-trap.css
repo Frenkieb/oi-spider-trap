@@ -1,0 +1,25 @@
+html, body {
+  width: 400px;
+}
+
+.button {
+  background-color: #E5F2F2;
+  border: 1px solid #333;
+  cursor: pointer;
+  font-family: Helvetica,Arial,sans-serif;
+  font-size: 1.0em;
+  justify-content: flex-start;
+  margin: 3% auto;
+  padding: 4px;
+  text-align: center;
+  width: 100px;
+}
+
+.button:hover {
+  background-color: #00b881;
+}
+
+.spidertraps {
+    display: flex;
+    justify-content: flex-start;
+}
