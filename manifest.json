@@ -19,7 +19,7 @@
 
   "browser_action": {
     "default_icon": "icons/spider-48.png",
-    "default_title": "Beastify",
+    "default_title": "Open Index Spider Trap",
     "default_popup": "popup/spider-trap.html"
   },
 
