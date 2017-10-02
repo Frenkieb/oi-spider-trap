@@ -1,67 +1,62 @@
-// Add eventlistener for the popup.
-document.addEventListener("click", (e) => {
-    if (e.target.classList.contains('button')) {
-        var creepy_id = e.target.id;
+// TODO: Add checkbox for TEST status.
+// TODO: What to do with the index checker data? How to display?
+// TODO: Styling of debug data.
+// TODO: Can we work with browser notifications?
 
-        // Report the action.
-        browser.tabs.executeScript(null, {
-            file: "/content_scripts/spider-trap-report.js"
-        });
-
-        var gettingActiveTab = browser.tabs.query({active: true, currentWindow: true});
-        gettingActiveTab.then((tabs) => {
-              browser.tabs.sendMessage(tabs[0].id, {creepy_id: creepy_id});
-        });
-    }
-});
+var currentTab = '';
 
 function getActiveTab() {
   return browser.tabs.query({active: true, currentWindow: true});
 }
 
-// Get the url of the current tab.
-var currentTab = '';
+// Get the url of the current tab, then we can do stuff.
 getActiveTab().then((tabs) => {
     currentTab = tabs[0];
 
     // Get the Index checker data for the current url.
-    var xmlhttp = new XMLHttpRequest();
     var url = 'https://www.openindex.io/portal/api/snippet?url=' + encodeURI(currentTab.url);
+    XMLHttpRequest_OI(url, printIndexCheckerData);
 
-    xmlhttp.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
-            var myArr = JSON.parse(this.responseText);
-            myFunction(myArr);
-        }
-    };
-    xmlhttp.open("GET", url, true);
-    xmlhttp.send();
+    // Get the Classy options from openindex.
+    var url = 'https://www.openindex.io/portal/api/modeltraining/categories?project=classy';
+    XMLHttpRequest_OI(url, addClassyOptions);
 
-    function myFunction(arr) {
-        var out = "";
-        var i;
-        var keys = Object.keys(arr);
-
-        for(i = 0; i < keys.length; i++) {
-            out += keys[i] + ' - ' +  arr[keys[i]] + '<br>';
-        }
-        document.getElementById("index-checker-data").innerHTML = out;
+    // Bind onclick to spider trap buttons.
+    var spider_trap_buttons = document.getElementsByClassName('spider-trap-button');
+    for (var i=0;i<spider_trap_buttons.length;i++) {
+        spider_trap_buttons[i].addEventListener('click', submitSpiderTrap, false);
     }
 });
 
-// Get the Classy options from openindex.
-var xmlhttp = new XMLHttpRequest();
-var url = "https://www.openindex.io/portal/api/modeltraining/categories?project=classy";
+/**
+ * Submit spider trap data to OI.
+ */
+function submitSpiderTrap() {
+    var id = this.getAttribute('id');
+    var url = 'https://www.openindex.io/portal/api/modeltraining/report?test=1&cat_id=' + id + '&url=' + currentTab.url;
 
-xmlhttp.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200) {
-        var classyData = JSON.parse(this.responseText);
-        addClassyOptions(classyData);
+    XMLHttpRequest_OI(url, printResponse);
+}
+
+/**
+ * Prints index checker data.
+ * @param  {array} arr
+ */
+function printIndexCheckerData(arr) {
+    var out = "";
+    var i;
+    var keys = Object.keys(arr);
+
+    for(i = 0; i < keys.length; i++) {
+        out += keys[i] + ' - ' +  arr[keys[i]] + '<br>';
     }
-};
-xmlhttp.open("GET", url, true);
-xmlhttp.send();
+    document.getElementById('index-checker-data').innerHTML = out;
+}
 
+/**
+ * Adds options to the classy <select>
+ * @param {array} classyData
+ */
 function addClassyOptions(classyData) {
     var select = document.getElementById('classy');
 
@@ -72,4 +67,39 @@ function addClassyOptions(classyData) {
         option.className = 'classy';
         select.add(option);
     }
+}
+
+/**
+ * Submit classy data to OI.
+ */
+var classy_submit = document.getElementById('classy');
+classy_submit.addEventListener('change', (e) => {
+    var url = "https://www.openindex.io/portal/api/modeltraining/report?test=1&cat_id=" + e.target.value + "&url=https://www.iana.org/domains/reserved";
+    XMLHttpRequest_OI(url, printResponse);
+});
+
+/**
+ * Prints response from a request to OI.
+ * @param  {string} text
+ */
+function printResponse(text) {
+    document.getElementById('debug').innerHTML = text.code + ' - ' + text.msg + ' - ' + currentTab.url;
+}
+
+/**
+ * Does a XMLHttpRequest and performs a callback.
+ * @param       {string}   url
+ * @param       {Function} callback
+ */
+function XMLHttpRequest_OI(url, callback){
+    var xmlhttp = new XMLHttpRequest();
+
+    xmlhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            var response = JSON.parse(this.responseText);
+            callback(response);
+        }
+    };
+    xmlhttp.open("GET", url, true);
+    xmlhttp.send();
 }

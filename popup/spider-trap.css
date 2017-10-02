@@ -2,7 +2,7 @@ html, body {
   width: 400px;
 }
 
-.button {
+.spider-trap-button {
   background-color: #E5F2F2;
   border: 1px solid #333;
   cursor: pointer;
@@ -15,7 +15,7 @@ html, body {
   width: 100px;
 }
 
-.button:hover {
+.spider-trap-button:hover {
   background-color: #00b881;
 }
 
