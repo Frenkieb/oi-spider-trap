@@ -22,7 +22,7 @@ getActiveTab().then((tabs) => {
     XMLHttpRequest_OI(url, addClassyOptions);
 
     // Bind onclick to spider trap buttons.
-    var spider_trap_buttons = document.getElementsByClassName('spider-trap-button');
+    var spider_trap_buttons = document.getElementsByClassName('button');
     for (var i=0;i<spider_trap_buttons.length;i++) {
         spider_trap_buttons[i].addEventListener('click', submitSpiderTrap, false);
     }
@@ -48,9 +48,17 @@ function printIndexCheckerData(arr) {
     var keys = Object.keys(arr);
 
     for(i = 0; i < keys.length; i++) {
-        out += keys[i] + ' - ' +  arr[keys[i]] + '<br>';
+        var key = keys[i];
+        var value = arr[keys[i]];
+        if (key.indexOf('prob_') == 0) {
+            key = key.replace('prob_', '');
+            out += '<li>' + key + ' - ' +  value + '</li>';
+        }
     }
-    document.getElementById('index-checker-data').innerHTML = out;
+    if ( out != '' ) {
+        out = '<div id="index-checker-data"><ul>' + out + '</ul></div>';
+    }
+    document.getElementById('index-checker').innerHTML = out;
 }
 
 /**

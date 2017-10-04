@@ -1,25 +1,74 @@
 html, body {
-  width: 400px;
-}
-
-.spider-trap-button {
-  background-color: #E5F2F2;
-  border: 1px solid #333;
-  cursor: pointer;
-  font-family: Helvetica,Arial,sans-serif;
-  font-size: 1.0em;
-  justify-content: flex-start;
-  margin: 3% auto;
-  padding: 4px;
-  text-align: center;
-  width: 100px;
-}
-
-.spider-trap-button:hover {
-  background-color: #00b881;
+    background-color: #ccc;
+    font-family: "Lato", Helvetica, Arial, sans-serif;
+    width: 400px;
+    padding: 5px;
 }
 
 .spidertraps {
     display: flex;
+}
+
+.button {
+    background-color: #00b881;
+    border-radius: 5px;
+    color: #fff;
+    cursor: pointer;
+    display: flex;
+    font-size: 17px;
+    flex-direction: column;
+    flex-grow: 3;
+    height: 32px;
+    justify-content: center;
+    text-align: center;
+    transition: background-color 1s ease-out;
+    padding: 4px 0;
+}
+.button:nth-child(2) {
+    margin: 0 5px;
+}
+
+.button:hover {
+    background-color: #00e5a0;
+}
+
+.classy {
+    display: flex;
     justify-content: flex-start;
+}
+
+#index-checker {
+    background-color: #00b881;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+    width: 400px;
+}
+
+#index-checker img {
+    margin: 10px;
+}
+
+#index-checker-data {
+    background-color: #00b881;
+    border-radius: 5px;
+    color: #fff;
+    list-style-type: none;
+    margin-top: 10px;
+    padding-bottom: 10px;
+}
+
+#index-checker-data ul {
+    list-style-type: none;
+}
+
+#index-checker-data ul li {
+    padding: 10px 0 0 0;
+}
+
+
+
+#index-checker-data ul li:first-letter {
+    text-transform: uppercase;
 }
