@@ -80,9 +80,10 @@ function addClassyOptions(classyData) {
 /**
  * Submit classy data to OI.
  */
-var classy_submit = document.getElementById('classy');
-classy_submit.addEventListener('change', (e) => {
-    var url = "https://www.openindex.io/portal/api/modeltraining/report?test=1&cat_id=" + e.target.value + "&url=https://www.iana.org/domains/reserved";
+var classy_submit = document.getElementById('classy-submit');
+classy_submit.addEventListener('click', (e) => {
+    var selected = document.getElementById('classy');
+    var url = "https://www.openindex.io/portal/api/modeltraining/report?test=1&cat_id=" + selected.value + "&url=https://www.iana.org/domains/reserved";
     XMLHttpRequest_OI(url, printResponse);
 });
 
@@ -92,6 +93,7 @@ classy_submit.addEventListener('change', (e) => {
  */
 function printResponse(text) {
     document.getElementById('debug').innerHTML = text.code + ' - ' + text.msg + ' - ' + currentTab.url;
+    document.getElementById('debug').style.display = 'block';
 }
 
 /**

@@ -2,7 +2,6 @@ html, body {
     background-color: #ccc;
     font-family: "Lato", Helvetica, Arial, sans-serif;
     width: 400px;
-    padding: 5px;
 }
 
 .spidertraps {
@@ -37,12 +36,101 @@ html, body {
     justify-content: flex-start;
 }
 
+/*
+#classy {
+    background-color: #00b881;
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    height: 40px
+}*/
+
+#classy-submit {
+    background-color: #00b881;
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    cursor: pointer;
+    font-size: 17px;
+    height: 40px;
+    text-align: center;
+    transition: background-color 0.5s ease-out;
+    padding: 4px 0;
+    width: 83px;
+
+}
+
+#classy-submit:active {
+    background-color: #00e5a0;
+}
+
+#classy {
+  background-color: #00b881;
+  border: none;
+  border-radius: 5px;
+  color: #fff;
+  padding: 0.5em 3.5em 0.5em 1em;
+  width: 313px;
+
+  /* reset */
+  margin: 0;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
+#classy {
+  background-image:
+    linear-gradient(45deg, transparent 50%, gray 50%),
+    linear-gradient(135deg, gray 50%, transparent 50%),
+    linear-gradient(to right, #ccc, #ccc);
+  background-position:
+    calc(100% - 20px) calc(1em + 2px),
+    calc(100% - 15px) calc(1em + 2px),
+    calc(100% - 2.5em) 0.5em;
+  background-size:
+    5px 5px,
+    5px 5px,
+    1px 1.5em;
+  background-repeat: no-repeat;
+  height: 40px;
+}
+
+#classy:focus {
+  background-image:
+    linear-gradient(45deg, green 50%, transparent 50%),
+    linear-gradient(135deg, transparent 50%, green 50%),
+    linear-gradient(to right, #ccc, #ccc);
+  background-position:
+    calc(100% - 15px) 1em,
+    calc(100% - 20px) 1em,
+    calc(100% - 2.5em) 0.5em;
+  background-size:
+    5px 5px,
+    5px 5px,
+    1px 1.5em;
+  background-repeat: no-repeat;
+  border-color: green;
+  outline: 0;
+}
+
+#debug {
+    background: #f2f2f2;
+    border: 1px solid #00b881;
+    border-radius: 5px;
+    display: none;
+    margin-top: 10px;
+    padding: 8px;
+}
+
 #index-checker {
     background-color: #00b881;
     border-radius: 5px;
     display: flex;
     justify-content: center;
-    margin-top: 10px;
+    margin: 10px 0;
     width: 400px;
 }
 
@@ -55,19 +143,11 @@ html, body {
     border-radius: 5px;
     color: #fff;
     list-style-type: none;
-    margin-top: 10px;
-    padding-bottom: 10px;
 }
 
 #index-checker-data ul {
     list-style-type: none;
 }
-
-#index-checker-data ul li {
-    padding: 10px 0 0 0;
-}
-
-
 
 #index-checker-data ul li:first-letter {
     text-transform: uppercase;
