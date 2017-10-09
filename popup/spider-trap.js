@@ -103,6 +103,13 @@ classy_submit.addEventListener('click', (e) => {
  * @param  {string} text
  */
 function printResponse(text) {
+    /*browser.notifications.create({
+      "type": "basic",
+      "iconUrl": browser.extension.getURL('icons/spider-48.png'),
+      "title": 'Reported: ',
+      "message": 'xxxxxxxxxx'
+    });*/
+
     document.getElementById('debug').innerHTML = text.code + ' - ' + text.msg + ' - ' + currentTab.url;
     document.getElementById('debug').style.display = 'block';
 }

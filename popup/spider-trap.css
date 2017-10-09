@@ -27,7 +27,8 @@ html, body {
     margin: 0 5px;
 }
 
-.button:hover {
+.button:hover,
+#classy-submit:hover {
     background-color: #00e5a0;
 }
 
@@ -36,14 +37,9 @@ html, body {
     justify-content: flex-start;
 }
 
-/*
-#classy {
-    background-color: #00b881;
-    border: none;
-    border-radius: 5px;
-    color: #fff;
-    height: 40px
-}*/
+#test {
+    margin: 10px;
+}
 
 #classy-submit {
     background-color: #00b881;
@@ -52,12 +48,11 @@ html, body {
     color: #fff;
     cursor: pointer;
     font-size: 17px;
-    height: 40px;
+    height: 41px;
     text-align: center;
     transition: background-color 0.5s ease-out;
     padding: 4px 0;
     width: 83px;
-
 }
 
 #classy-submit:active {
@@ -69,6 +64,7 @@ html, body {
   border: none;
   border-radius: 5px;
   color: #fff;
+  font-size: 17px;
   padding: 0.5em 3.5em 0.5em 1em;
   width: 313px;
 
@@ -79,9 +75,7 @@ html, body {
   box-sizing: border-box;
   -webkit-appearance: none;
   -moz-appearance: none;
-}
 
-#classy {
   background-image:
     linear-gradient(45deg, transparent 50%, gray 50%),
     linear-gradient(135deg, gray 50%, transparent 50%),
@@ -90,10 +84,7 @@ html, body {
     calc(100% - 20px) calc(1em + 2px),
     calc(100% - 15px) calc(1em + 2px),
     calc(100% - 2.5em) 0.5em;
-  background-size:
-    5px 5px,
-    5px 5px,
-    1px 1.5em;
+  background-size: 5px 5px, 5px 5px, 1px 1.5em;
   background-repeat: no-repeat;
   height: 40px;
 }
