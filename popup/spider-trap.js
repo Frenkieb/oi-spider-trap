@@ -4,10 +4,20 @@
 // TODO: Can we work with browser notifications?
 
 var currentTab = '';
+var test = '';
 
 function getActiveTab() {
   return browser.tabs.query({active: true, currentWindow: true});
 }
+
+// Set test parameter.
+var test_checkbox = document.getElementById('test');
+test_checkbox.addEventListener('click', (e) => {
+    test = ( test_checkbox.checked ) ? '&test=true' : '' ;
+    /*document.getElementById('debug').innerHTML = test;
+    document.getElementById('debug').style.display = 'block';*/
+});
+
 
 // Get the url of the current tab, then we can do stuff.
 getActiveTab().then((tabs) => {
@@ -33,7 +43,7 @@ getActiveTab().then((tabs) => {
  */
 function submitSpiderTrap() {
     var id = this.getAttribute('id');
-    var url = 'https://www.openindex.io/portal/api/modeltraining/report?test=1&cat_id=' + id + '&url=' + currentTab.url;
+    var url = 'https://www.openindex.io/portal/api/modeltraining/report?cat_id=' + id + test + '&url=' + currentTab.url;
 
     XMLHttpRequest_OI(url, printResponse);
 }
@@ -83,7 +93,8 @@ function addClassyOptions(classyData) {
 var classy_submit = document.getElementById('classy-submit');
 classy_submit.addEventListener('click', (e) => {
     var selected = document.getElementById('classy');
-    var url = "https://www.openindex.io/portal/api/modeltraining/report?test=1&cat_id=" + selected.value + "&url=https://www.iana.org/domains/reserved";
+    var url = "https://www.openindex.io/portal/api/modeltraining/report?cat_id=" + selected.value + test + "&url=" + encodeURI(currentTab.url);
+
     XMLHttpRequest_OI(url, printResponse);
 });
 
